@@ -1,0 +1,22 @@
+name: publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: nbc build
+        run: |
+          version=0.1.0
+          wget "https://github.com/naoto/nbc/releases/download/v${version}/nbc-x86-64-linux.zip"
+          unzip "nbc-x86-64-linux.zip"
+          ./nbc diary output
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: output
