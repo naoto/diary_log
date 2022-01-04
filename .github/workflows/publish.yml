@@ -16,6 +16,8 @@ jobs:
           wget "https://github.com/naoto/nbc/releases/download/v${version}/nbc-x86-64-linux.zip"
           unzip "nbc-x86-64-linux.zip"
           ls .
+          echo "---"
+          ls diary
           ./nbc-x86-64-linux/nbc ../diary ../output
       - uses: peaceiris/actions-gh-pages@v3
         with:
